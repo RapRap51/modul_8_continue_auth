@@ -3,14 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    function index()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $pageTitle = 'Home';
-            return view('home', ['pageTitle' => $pageTitle]);
+        $this->middleware('auth');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        if (Auth::check()) {
+            $pageTitle = 'Home';
+            return view('home', ['pageTitle' => $pageTitle]);
+        } else {
+            return redirect('/login');
+        }
+    }
 }
-

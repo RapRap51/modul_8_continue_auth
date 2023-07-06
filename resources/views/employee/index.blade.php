@@ -14,8 +14,8 @@ btn-primary">Create Employee</a>
         </div>
         <hr>
         <div class="table-responsive border p-3 rounded-3">
-            <table class="table table-bordered table-hover table-striped mb-0
-bg-white">
+            <table class="table table-bordered table-hover table-striped
+mb-0 bg-white">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -34,15 +34,11 @@ bg-white">
                             <td>{{ $employee->email }}</td>
                             <td>{{ $employee->age }}</td>
                             <td>{{ $employee->position->name }}</td>
-                            <td>
-                                {{-- ACTIONS SECTION --}}
-                                @include("employee.action")
-                            </td>
+                            <td>@include('employee.actions')</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
-    @endsection
+@endsection

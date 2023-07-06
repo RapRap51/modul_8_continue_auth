@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EmployeeController;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +17,21 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('home', [HomeController::class, 'index'])->name('home');
+//     Route::get('profile', ProfileController::class)->name('profile');
+//     Route::resource('employees', EmployeeController::class);
+// });
 
 
-Route::get('/home', function() {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
-
 Route::get('profile', ProfileController::class)->name('profile');
-
 Route::resource('employees', EmployeeController::class);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
